@@ -39,9 +39,11 @@ client = OpenAI(
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4o-mini"
 
-reset_message_history()
 
-st.title("ChatGPT-like clone")
+if "messages" not in st.session_state:
+    reset_message_history()
+
+st.title("Chat with your Gmail Inbox")
 
 current_user = st.text_input("Email (change to reset chat)",
                              on_change=reset_message_history)
